@@ -33,4 +33,3 @@ def delete_user_account(sender, instance, **kwargs):
         user.delete()
     except User.DoesNotExist:
         pass
-    

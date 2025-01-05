@@ -31,8 +31,8 @@ Login
                     <div class="col-lg-9">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div>
-                                <h2 class="mb-1">John Doe</h2>
-                                <p class="text-muted mb-0">Senior Software Developer</p>
+                                <h2 class="mb-1"> {{ username }}</h2>
+                                <p class="text-muted mb-0">{{ email }}</p>
                             </div>
                             <button class="btn btn-primary">Edit Profile</button>
                         </div>
@@ -69,8 +69,8 @@ Login
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center">
-                                    <i class="bi bi-envelope me-2"></i>
-                                    <span class="text-muted"> {email}</span>
+                                    <i class="bi bi-calendar me-2"></i>
+                                    <span class="text-muted">{{ created_at }}</span>
                                 </div>
                             </div>
                             <div class="col-md-6">

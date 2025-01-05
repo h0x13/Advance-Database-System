@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
 
+
 # Create your models here.
 class User_Account(models.Model):
     username = models.CharField(max_length=50)

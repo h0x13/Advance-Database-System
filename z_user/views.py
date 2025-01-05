@@ -7,7 +7,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 from .models import User_Account
+from .forms import User_Register, User_Login
 
 # Create your views here.
 
@@ -15,42 +17,56 @@ from .models import User_Account
 def landing_page(request):
     return render(request, 'landing-page.html')
 
-# def register(request):
-#     return render(request, 'temp_account/register.html')
 def register(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = User_Account.objects.create(username=username, email=email)
-        user.set_password(password)
-        user.save()
-        return HttpResponseRedirect(reverse('login'))
-    return render(request, 'temp_users/register.html')
+        form = User_Register(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('login'))
+    else:
+        form = User_Register()
+    return render(request, 'temp_users/register.html', {'form': form})
 
 
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('homepage')
-        else:
-            messages.error(request, 'Invalid username or password')
-    return render(request, 'temp_users/login.html')
+        form = User_Login(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('homepage')
+            else:
+                messages.error(request, 'Invalid username or password')
+    else:
+        form = User_Login()
+    return render(request, 'temp_users/login.html', {'form': form})
 
 
 # @login_required
 def homepage(request):
     return render(request, 'temp_users/homepage.html')
 
+def logout_user(request):
+    logout(request)
+    return redirect('login')
+
 def coffee(request):
     return render(request, 'temp_users/coffee.html')
 
 def profile(request):
-    return render(request, 'temp_users/profile.html') 
+    user_account = User_Account.objects.get(username=request.user)
+
+    context = {
+        "username": user_account.username,
+        "email": user_account.email,
+        "created_at": user_account.created_at
+    }
+
+    return render(request, "temp_users/profile.html", context)
+
 
 
 

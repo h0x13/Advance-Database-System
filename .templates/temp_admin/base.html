@@ -74,7 +74,7 @@
 
         <div class="mt-auto">
             <div class="list-group">
-                <form method="post" action="">
+                <form method="post" action="{% url 'admin-login' %}">
                     {% csrf_token %}
                     <button type="submit" class="list-group-item list-group-item-action text-danger w-100 text-start">
                         <i class="fa-solid fa-right-from-bracket me-2"></i>Logout

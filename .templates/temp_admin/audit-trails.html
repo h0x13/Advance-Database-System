@@ -69,13 +69,13 @@
                             <th scope="col">Timestamp</th>
                             <th scope="col">User</th>
                             <th scope="col">Action</th>
-                            <th scope="col">IP Address</th>
                             <th scope="col">Details</th>
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for %}
                         <!-- Row 1 -->
                         <tr>
                             <td class="px-4">
@@ -102,7 +102,6 @@
                                 <span class="badge bg-info">UPDATE</span>
                                 <div class="text-muted small">Product Price</div>
                             </td>
-                            <td>192.168.1.105</td>
                             <td>Updated price from $25.99 to $29.99</td>
                             <td><span class="badge bg-success">Success</span></td>
                             <td>
@@ -112,77 +111,6 @@
                             </td>
                         </tr>
 
-                        <!-- Row 2 -->
-                        <tr>
-                            <td class="px-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox">
-                                </div>
-                            </td>
-                            <td>
-                                <div>2024-01-05 14:25:15</div>
-                                <small class="text-muted">7 mins ago</small>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-info rounded-circle p-2 text-white me-2">
-                                        <i class="bi bi-person-fill small"></i>
-                                    </div>
-                                    <div>
-                                        <div class="fw-bold">Jane Smith</div>
-                                        <small class="text-muted">Staff</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="badge bg-warning">LOGIN</span>
-                                <div class="text-muted small">User Authentication</div>
-                            </td>
-                            <td>192.168.1.106</td>
-                            <td>Successful login from Chrome browser</td>
-                            <td><span class="badge bg-success">Success</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-secondary">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- Row 3 -->
-                        <tr>
-                            <td class="px-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox">
-                                </div>
-                            </td>
-                            <td>
-                                <div>2024-01-05 14:20:08</div>
-                                <small class="text-muted">12 mins ago</small>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-danger rounded-circle p-2 text-white me-2">
-                                        <i class="bi bi-person-fill small"></i>
-                                    </div>
-                                    <div>
-                                        <div class="fw-bold">Mike Johnson</div>
-                                        <small class="text-muted">Admin</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="badge bg-danger">DELETE</span>
-                                <div class="text-muted small">Product Item</div>
-                            </td>
-                            <td>192.168.1.107</td>
-                            <td>Deleted product SKU: COFFEE-123</td>
-                            <td><span class="badge bg-success">Success</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-secondary">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
