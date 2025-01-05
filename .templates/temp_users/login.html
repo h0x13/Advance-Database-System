@@ -1,4 +1,4 @@
-{% extends "temp_account/base.html" %}
+{% extends "temp_users/base.html" %}
 
 {% block title %}
 Login
@@ -8,12 +8,16 @@ Login
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <a href="{% url 'landing-page' %}" class="position-relative top-0 end-0 m-3 text-dark">
+                <i class="bi bi-arrow-left-circle fs-1"></i>
+            </a>
             <div class="card">
                 <div class="card-header text-center">
                     <h3>Login</h3>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="Enter username">

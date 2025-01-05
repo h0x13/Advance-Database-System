@@ -1,0 +1,203 @@
+{% extends "temp_admin/base.html" %}
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+{% block content %}
+<div class="container-fluid p-4">
+    <!-- Overview Cards Row -->
+    <div class="row g-4 mb-4">
+        <!-- Total Orders Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-primary text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-2">Total Orders</h6>
+                            <h2 class="mb-0">1,587</h2>
+                        </div>
+                        <div>
+                            <i class="bi bi-cart-fill display-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="badge bg-white text-primary">+15% Today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-success text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-2">Revenue</h6>
+                            <h2 class="mb-0">$42,589</h2>
+                        </div>
+                        <div>
+                            <i class="bi bi-currency-dollar display-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="badge bg-white text-success">+8.5% Growth</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Users Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-info text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-2">Active Users</h6>
+                            <h2 class="mb-0">847</h2>
+                        </div>
+                        <div>
+                            <i class="bi bi-people-fill display-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="badge bg-white text-info">Active Now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Tasks Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card bg-warning text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase mb-2">Pending Tasks</h6>
+                            <h2 class="mb-0">24</h2>
+                        </div>
+                        <div>
+                            <i class="bi bi-list-task display-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="badge bg-white text-warning">Action Needed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Row -->
+    <div class="row g-4">
+        <!-- Recent Orders Table -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Recent Orders</h5>
+                    <button class="btn btn-primary btn-sm">View All</button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#12345</td>
+                                    <td>John Doe</td>
+                                    <td>Cappuccino</td>
+                                    <td>$8.99</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#12346</td>
+                                    <td>Jane Smith</td>
+                                    <td>Latte</td>
+                                    <td>$7.49</td>
+                                    <td><span class="badge bg-warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#12347</td>
+                                    <td>Mike Johnson</td>
+                                    <td>Espresso</td>
+                                    <td>$4.99</td>
+                                    <td><span class="badge bg-info">Processing</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#12348</td>
+                                    <td>Sarah Williams</td>
+                                    <td>Mocha</td>
+                                    <td>$6.99</td>
+                                    <td><span class="badge bg-danger">Cancelled</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions and Notifications -->
+        <div class="col-lg-4">
+            <!-- Quick Actions -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-plus-circle me-2"></i>Add New Product
+                        </button>
+                        <button class="btn btn-outline-info">
+                            <i class="bi bi-gear me-2"></i>System Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Notifications -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Recent Notifications</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">New Order Received</h6>
+                                <small class="text-muted">3 mins ago</small>
+                            </div>
+                            <p class="mb-1 text-muted">Order #12349 needs processing</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Low Stock Alert</h6>
+                                <small class="text-muted">1 hour ago</small>
+                            </div>
+                            <p class="mb-1 text-muted">Arabica beans running low</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Daily Report</h6>
+                                <small class="text-muted">5 hours ago</small>
+                            </div>
+                            <p class="mb-1 text-muted">Daily sales report is ready</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+{% endblock %}

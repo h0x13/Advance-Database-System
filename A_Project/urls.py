@@ -28,7 +28,7 @@ urlpatterns = [
 
 
     # Include the app's urls.py file
-    path('account/', include('z_account.urls')),
+    # path('account/', include('z_account.urls')),
     path('user-admin/', include('z_admin.urls')),
-    # path('user/', include('z_user.urls')),
+    path('user/', include('z_user.urls')),
 ]

@@ -12,6 +12,9 @@ def register(request):
 def login(request):
     return render(request, 'temp_account/login.html')
 
+def profile(request):
+    return render(request, 'profile.html')
+
 def logout(request):
     return render(request, 'logout.html')
 

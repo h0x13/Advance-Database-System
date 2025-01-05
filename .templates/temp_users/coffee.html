@@ -1,0 +1,136 @@
+{% extends "temp_users/base.html" %}
+{% block title %}
+Coffee
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-light py-5">
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary mb-3">Welcome to the Coffee Haven</h1>
+            <p class="lead text-secondary mb-4">Discover our carefully curated selection of premium coffees</p>
+            <hr class="w-25 mx-auto text-primary opacity-75 mb-5">
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top p-3" src="data:image/jpeg;base64" alt="Coffee">
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold text-primary mb-3">{NAME}</h4>
+                        <p class="fs-5 text-muted mb-3">{PRICE}</p>
+                        <button class="btn btn-primary rounded w-100">
+                            <i class="bi bi-cart-plus me-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top p-3" src="data:image/jpeg;base64" alt="Coffee">
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold text-primary mb-3">{NAME}</h4>
+                        <p class="fs-5 text-muted mb-3">{PRICE}</p>
+                        <button class="btn btn-primary rounded w-100">
+                            <i class="bi bi-cart-plus me-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top p-3" src="data:image/jpeg;base64" alt="Coffee">
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold text-primary mb-3">{NAME}</h4>
+                        <p class="fs-5 text-muted mb-3">{PRICE}</p>
+                        <button class="btn btn-primary rounded w-100">
+                            <i class="bi bi-cart-plus me-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top p-3" src="data:image/jpeg;base64" alt="Coffee">
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold text-primary mb-3">{NAME}</h4>
+                        <p class="fs-5 text-muted mb-3">{PRICE}</p>
+                        <button class="btn btn-primary rounded w-100">
+                            <i class="bi bi-cart-plus me-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top p-3" src="data:image/jpeg;base64" alt="Coffee">
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold text-primary mb-3">{NAME}</h4>
+                        <p class="fs-5 text-muted mb-3">{PRICE}</p>
+                        <button class="btn btn-primary rounded w-100">
+                            <i class="bi bi-cart-plus me-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img class="card-img-top p-3" src="data:image/jpeg;base64" alt="Coffee">
+                    <div class="card-body text-center">
+                        <h4 class="card-title fw-bold text-primary mb-3">{NAME}</h4>
+                        <p class="fs-5 text-muted mb-3">{PRICE}</p>
+                        <button class="btn btn-primary roundedl w-100">
+                            <i class="bi bi-cart-plus me-2"></i>Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Features Section -->
+        <div class="row mt-5 pt-5 text-center g-4">
+            <!-- Feature 1 -->
+            <div class="col-md-4">
+                <div class="bg-white p-4 rounded-3 shadow-sm h-100">
+                    <i class="bi bi-cup-hot display-5 text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">Premium Beans</h5>
+                    <p class="text-muted mb-0">Sourced from the finest regions</p>
+                </div>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="col-md-4">
+                <div class="bg-white p-4 rounded-3 shadow-sm h-100">
+                    <i class="bi bi-truck display-5 text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">Fast Delivery</h5>
+                    <p class="text-muted mb-0">Right to your doorstep</p>
+                </div>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="col-md-4">
+                <div class="bg-white p-4 rounded-3 shadow-sm h-100">
+                    <i class="bi bi-heart display-5 text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">Made with Love</h5>
+                    <p class="text-muted mb-0">Every cup tells a story</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
