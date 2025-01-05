@@ -11,6 +11,33 @@ class User_Register(forms.Form):
         required=True,
     )
 
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
     email = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -29,8 +56,8 @@ class User_Register(forms.Form):
         required=True,
     )
 
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput(
+    location = forms.CharField(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control'
                 }
@@ -47,6 +74,10 @@ class User_Register(forms.Form):
             username=self.cleaned_data['username'],
             email=self.cleaned_data['email'],
             password=self.cleaned_data['password'],
+            first_name=self.cleaned_data['first_name'],
+            last_name=self.cleaned_data['last_name'],
+            phone_number=self.cleaned_data['phone_number'],
+            location=self.cleaned_data['location'],
         )
         if commit:
             user.save()

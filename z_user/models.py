@@ -7,8 +7,13 @@ from django.dispatch import receiver
 # Create your models here.
 class User_Account(models.Model):
     username = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, default="default") #
+    last_name = models.CharField(max_length=50, default="default") #
+    phone_number = models.CharField(max_length=50, default="default") #
     email = models.EmailField(max_length=50)
     password = models.CharField(max_length=50)
+    location = models.CharField(max_length=50, default="default") #
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

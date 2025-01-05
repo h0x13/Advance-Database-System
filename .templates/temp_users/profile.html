@@ -31,8 +31,8 @@ Login
                     <div class="col-lg-9">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div>
-                                <h2 class="mb-1"> {{ username }}</h2>
-                                <p class="text-muted mb-0">{{ email }}</p>
+                                <h2 class="mb-1 fw-semibold"> {{ username }}</h2>
+                                <p class="text-muted mb-0">{{ first_name }} {{ last_name }}</p>
                             </div>
                             <button class="btn btn-primary">Edit Profile</button>
                         </div>
@@ -76,7 +76,7 @@ Login
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-geo-alt me-2"></i>
-                                    <span class="text-muted">San Francisco, CA</span>
+                                    <span class="text-muted">{{ location }}</span>
                                 </div>
                             </div>
                         </div>

@@ -58,10 +58,15 @@ def coffee(request):
 
 def profile(request):
     user_account = User_Account.objects.get(username=request.user)
+    print(user_account)
 
     context = {
         "username": user_account.username,
+        "first_name": user_account.first_name,
+        "last_name": user_account.last_name,
+        "phone_number": user_account.phone_number,
         "email": user_account.email,
+        "location": user_account.location,
         "created_at": user_account.created_at
     }
 
