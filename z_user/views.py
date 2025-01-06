@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from z_admin.models import Coffee
 from .models import User_Account
 from .forms import User_Register, User_Login
 
@@ -45,20 +46,22 @@ def user_login(request):
     return render(request, 'temp_users/login.html', {'form': form})
 
 
-# @login_required
+@login_required(login_url='z_user:login')
 def homepage(request):
     return render(request, 'temp_users/homepage.html')
 
-def logout_user(request):
-    logout(request)
-    return redirect('login')
 
+@login_required(login_url='z_user:login')
 def coffee(request):
-    return render(request, 'temp_users/coffee.html')
+    coffees = Coffee.objects.all()
+    context = {
+        'coffees': coffees
+    }
+    return render(request, 'temp_users/coffee.html', context)
 
+@login_required(login_url='z_user:login')
 def profile(request):
     user_account = User_Account.objects.get(username=request.user)
-    print(user_account)
 
     context = {
         "username": user_account.username,
@@ -69,7 +72,6 @@ def profile(request):
         "location": user_account.location,
         "created_at": user_account.created_at
     }
-
     return render(request, "temp_users/profile.html", context)
 
 

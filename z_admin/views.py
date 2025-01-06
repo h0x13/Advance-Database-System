@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import Admin_Login
-from .models import Admin_Account
+from .forms import Admin_Login, Add_Coffee, Edit_Coffee
+from .models import Admin_Account, Coffee
 
 
 # Create your views here.
@@ -26,18 +28,44 @@ def admin_login(request):
     return render(request, "temp_admin/admin-login.html", context)
 
 
-@login_required(login_url='z_admin:admin-login')
 def admin_dashboard(request):
     return render(request, 'temp_admin/admin-dashboard.html')
 
-# @login_required
-# def admin_logout(request):
-#     logout(request)
-#     return redirect('admin_login')
+def add_coffee(request):    # CREATE
+    if request.method == 'POST':
+        form = Add_Coffee(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin-dashboard'))
+    else:
+        form = Add_Coffee()
+    return render(request, 'temp_admin/add-coffee.html', {'form': form})
+
+def coffee_view(request):    # READ
+    coffees = Coffee.objects.all()
+    context = {
+        'coffees': coffees
+    }
+    return render(request, 'temp_admin/coffee-view.html', context)
+
+def edit_coffee(request, pk):    # UPDATE
+    coffee = Coffee.objects.get(id=pk)
+    if request.method == 'POST':
+        form = Edit_Coffee(request.POST, instance=coffee)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('coffee-view'))
+    else:
+        form = Edit_Coffee(instance=coffee)
+    return render(request, 'temp_admin/edit-coffee.html', {'form': form})
+
+def delete_coffee(request, pk):    # DELETE
+    coffee = Coffee.objects.get(id=pk)
+    coffee.delete()
+    return HttpResponseRedirect(reverse('coffee-view'))
 
 
-@login_required
+
+
 def audit_trail(request):
-    audit_logs = Admin_Account.objects.all().order_by('-timestamp')
-    audit_logs = {"audit_logs": audit_logs}
-    return render(request, 'temp_admin/audit-trail.html', audit_logs)
+    return render(request, 'temp_admin/audit-trails.html')

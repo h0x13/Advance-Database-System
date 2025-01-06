@@ -153,12 +153,15 @@
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">
-                            <i class="bi bi-plus-circle me-2"></i>Add New Product
-                        </button>
-                        <button class="btn btn-outline-info">
-                            <i class="bi bi-gear me-2"></i>System Settings
-                        </button>
+                        <form action="{% url 'add-coffee' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-primary w-100">
+                                <i class="bi bi-plus-circle me-2"></i>Add Coffee
+                            </button>
+                        </form>
+                            <a href="{% url 'coffee-view' %}" class="btn btn-outline-info w-100">
+                                <i class="bi bi-cup-hot"></i> View Coffee
+                            </a>
                     </div>
                 </div>
             </div>

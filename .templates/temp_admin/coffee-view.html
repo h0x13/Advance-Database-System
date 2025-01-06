@@ -1,6 +1,6 @@
-{% extends "temp_users/base.html" %}
+{% extends "temp_admin/base.html" %}
 {% block title %}
-Coffee
+Coffee View
 {% endblock %}
 
 {% block content %}
@@ -24,9 +24,12 @@ Coffee
                     <div class="card-body text-center">
                         <h4 class="card-title fw-bold mb-3">{{ coffee.name }}</h4>
                         <p class="fs-5 text-muted mb-3">{{ coffee.price }}</p>
-                        <button class="btn btn-dark rounded w-100">
-                            <i class="bi bi-cart-plus me-2"></i>Order Now
-                        </button>
+                            <a href="{% url 'edit-coffee' coffee.pk %}" class="btn btn-success rounded w-100">
+                                <i class=" bi bi-cart-plus me-2"></i>Edit
+                            </a>
+                            <a href="{% url 'delete-coffee' coffee.pk %}" class="btn btn-danger rounded w-100 mt-2">
+                                <i class="bi bi-cart-plus me-2"></i>Delete
+                            </a>
                     </div>
                 </div>
             </div>
