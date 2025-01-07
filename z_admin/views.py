@@ -8,7 +8,11 @@ from .forms import Admin_Login, Add_Coffee, Edit_Coffee
 from .models import Admin_Account, Coffee
 
 
+
 # Create your views here.
+def landing_page(request):
+    return render(request, 'landing-page.html')
+
 def admin_login(request):
     if request.method == 'POST':
         form = Admin_Login(request.POST)
@@ -27,10 +31,18 @@ def admin_login(request):
     context = {"form": form}
     return render(request, "temp_admin/admin-login.html", context)
 
+def admin_logout(request):
+    logout(request)
+    return redirect('landing-page')
 
+@login_required(login_url='admin-login')
 def admin_dashboard(request):
     return render(request, 'temp_admin/admin-dashboard.html')
 
+
+
+# This is the CRUD for the coffee
+@login_required(login_url='admin-login')
 def add_coffee(request):    # CREATE
     if request.method == 'POST':
         form = Add_Coffee(request.POST)
@@ -41,6 +53,7 @@ def add_coffee(request):    # CREATE
         form = Add_Coffee()
     return render(request, 'temp_admin/add-coffee.html', {'form': form})
 
+@login_required(login_url='admin-login')
 def coffee_view(request):    # READ
     coffees = Coffee.objects.all()
     context = {
@@ -48,6 +61,7 @@ def coffee_view(request):    # READ
     }
     return render(request, 'temp_admin/coffee-view.html', context)
 
+@login_required(login_url='admin-login')
 def edit_coffee(request, pk):    # UPDATE
     coffee = Coffee.objects.get(id=pk)
     if request.method == 'POST':
@@ -59,6 +73,7 @@ def edit_coffee(request, pk):    # UPDATE
         form = Edit_Coffee(instance=coffee)
     return render(request, 'temp_admin/edit-coffee.html', {'form': form})
 
+@login_required(login_url='admin-login')
 def delete_coffee(request, pk):    # DELETE
     coffee = Coffee.objects.get(id=pk)
     coffee.delete()
@@ -66,6 +81,6 @@ def delete_coffee(request, pk):    # DELETE
 
 
 
-
+@login_required(login_url='admin-login')
 def audit_trail(request):
     return render(request, 'temp_admin/audit-trails.html')

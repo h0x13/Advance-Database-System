@@ -16,21 +16,20 @@
     </title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fw-semibold">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fw-semibold sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav d-flex justify-content-end w-100">    
+                <div class="navbar-nav d-flex justify-content-end w-100"> 
+                    {% if user.is_authenticated %}  
                     <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
                     <a class="nav-link" href="{% url 'coffee' %}">Coffee</a >
                     <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                    <form action="{% url 'landing-page' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn nav-link btn-link">Logout</button>
-                    </form>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

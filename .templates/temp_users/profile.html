@@ -1,82 +1,41 @@
 {% extends "temp_users/base.html" %}
 
 {% block title %}
-Login
+Profile Dashboard
 {% endblock %}
 
 {% block content %}
-<div class="container text-center mt-5">
-    <h1>Welcome to the Profile</h1>
-    <p>This is a sample homepage template.</p>
-
-    <div class="container py-5">
-        <div class="card border-0 shadow">
-            <div class="card-body p-4">
-                <div class="row">
-                    <!-- Profile Picture Column -->
-                    <div class="col-lg-3 text-center mb-4 mb-lg-0">
-                        <div class="position-relative d-inline-block">
-                            <img src="https://via.placeholder.com/150" 
-                                 class="rounded-circle img-thumbnail shadow-sm" 
-                                 alt="Profile Picture"
-                                 width="150" 
-                                 height="150">
-                            <span class="position-absolute bottom-0 end-0 p-2 bg-success border border-white rounded-circle">
-                                <span class="visually-hidden">Online status</span>
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Profile Info Column -->
-                    <div class="col-lg-9">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div>
-                                <h2 class="mb-1 fw-semibold"> {{ username }}</h2>
-                                <p class="text-muted mb-0">{{ first_name }} {{ last_name }}</p>
-                            </div>
-                            <button class="btn btn-dark">Edit Profile</button>
-                        </div>
-                        
-                        <!-- Stats Row -->
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <div class="card bg-light">
-                                    <div class="card-body text-center">
-                                        <h3 class="h5">Projects</h3>
-                                        <h4 class="mb-0">124</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card bg-light">
-                                    <div class="card-body text-center">
-                                        <h3 class="h5">Following</h3>
-                                        <h4 class="mb-0">723</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card bg-light">
-                                    <div class="card-body text-center">
-                                        <h3 class="h5">Followers</h3>
-                                        <h4 class="mb-0">948</h4>
-                                    </div>
-                                </div>
+<div class="container">
+    <!-- Profile Header -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card bg-dark text-white">
+                <div class="card-body p-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 text-center text-lg-start">
+                            <div class="position-relative d-inline-block">
+                                <img src="https://via.placeholder.com/150" 
+                                     class="rounded-circle img-thumbnail border-light shadow" 
+                                     alt="Profile Picture"
+                                     width="200" 
+                                     height="200">
+                                <span class="position-absolute bottom-0 end-0 p-3 bg-success border border-dark rounded-circle">
+                                    <span class="visually-hidden">Online status</span>
+                                </span>
                             </div>
                         </div>
-                        
-                        <!-- Contact Info -->
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-calendar me-2"></i>
-                                    <span class="text-muted">{{ created_at }}</span>
+                        <div class="col-lg-8 text-center text-lg-start mt-4 mt-lg-0">
+                            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+                                <div>
+                                    <h1 class="display-4 fw-bold mb-1">{{ username }}</h1>
+                                    <p class="lead text-light mb-3 fw-semibold">{{ first_name }} {{ last_name }}</p>
+                                    <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
+                                        <span class="badge bg-primary"> Application User </span>
+                                        <span class="badge bg-info">Verified</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-geo-alt me-2"></i>
-                                    <span class="text-muted">{{ location }}</span>
+                                <div class="mt-3 mt-lg-0">
+                                    <button class="btn btn-outline-light btn-lg">Edit Profile</button>
                                 </div>
                             </div>
                         </div>
@@ -86,5 +45,152 @@ Login
         </div>
     </div>
 
+    <!-- Main Content -->
+    <div class="row g-4">
+        <!-- Left Column -->
+        <div class="col-lg-4">
+            <!-- Quick Stats -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Statistics</h4>
+                    <div class="row g-3">
+                        <div class="col-4 text-center">
+                            <h3 class="fw-bold text-primary">{Num}</h3>
+                            <small class="text-muted">Purchase</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <h3 class="fw-bold text-success">14.3K</h3>
+                            <small class="text-muted">Followers</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <h3 class="fw-bold text-info">892</h3>
+                            <small class="text-muted">Following</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Contact Information</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="bi bi-geo-alt-fill text-primary me-3"></i>
+                            <div>
+                                <small class="text-muted d-block">Location</small>
+                                <span>{{ location }}</span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="bi bi-calendar-event-fill text-primary me-3"></i>
+                            <div>
+                                <small class="text-muted d-block">Joined</small>
+                                <span>{{ created_at }}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-lg-8">
+            <!-- About Section -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="card-title mb-0">About Me</h4>
+                    </div>
+                    <p class="card-text">
+                        I am {{first_name}} {{last_name}} a user of the application.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Purchase History Card -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="card-title mb-0">Purchase History</h4>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#purchaseHistoryModal">
+                            <i class="bi bi-clock-history me-2"></i>View History
+                        </button>
+                    </div>
+                    <p class="text-muted">Click the button to view your complete purchase history.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase History Modal -->
+    <div class="modal fade" id="purchaseHistoryModal" tabindex="-1" aria-labelledby="purchaseHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="purchaseHistoryModalLabel">
+                        <i class="bi bi-clock-history me-2"></i>Purchase History
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for purchase in purchase %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ purchase.purchase_date }}</td>
+                                    <td>{{ purchase.order.name }}</td>
+                                    <td>{{ purchase.order.price }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Profile Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Username">
+                                <label for="floatingInput">Username</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingEmail" placeholder="Email">
+                                <label for="floatingEmail">Email address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
