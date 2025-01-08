@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 
-from .forms import User_Register, User_Login
+from .forms import User_Register, User_Login, Edit_Form
 
 from z_admin.models import Coffee, Order
 from .models import User_Account, Purchase_Record
@@ -50,6 +50,9 @@ def user_login(request):
         form = User_Login()
     return render(request, 'temp_users/login.html', {'form': form})
 
+
+
+
 # This is the logout page
 def user_logout(request):
     logout(request)
@@ -82,7 +85,6 @@ def profile(request):
     user_account = User_Account.objects.get(username=request.user)
     purchase = Purchase_Record.objects.filter(user_account=user_account)
 
-
     context = {
         "username": user_account.username,
         "first_name": user_account.first_name,
@@ -99,6 +101,25 @@ def profile(request):
     return render(request, "temp_users/profile.html", context)
 
 
+# This is the edit profile page
+@login_required(login_url='login')
+def edit_profile(request):
+    user_account = User_Account.objects.get(username=request.user)
+    if request.method == 'POST':
+        form = Edit_Form(request.POST, instance=user_account)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = Edit_Form(instance=user_account)
+    return render(request, 'temp_users/edit-profile.html', {'form': form})
+
+
+
+
 
 # This is the order coffee page
 @login_required(login_url='login')
@@ -108,3 +129,20 @@ def order_coffee(request, pk):
     Order.objects.create(user=user, coffee=coffee)
     Purchase_Record.objects.create(user_account=user, order=coffee)
     return redirect('coffee')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

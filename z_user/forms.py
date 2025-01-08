@@ -67,7 +67,7 @@ class User_Register(forms.Form):
 
     class Meta:
         model = User_Account
-        fields = ['username', 'email', 'password', 'confirm_password']
+        fields = ['username', 'first_name','last_name', 'phone_number', 'email', 'password', 'location']
 
     def save(self, commit=True):
         user = User_Account(
@@ -103,3 +103,73 @@ class User_Login(forms.Form):
         ),
         required=True,
     )
+
+
+
+class Edit_Form(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    email = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    location = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    class Meta:
+        model = User_Account
+        fields = ['username', 'first_name','last_name', 'phone_number', 'email', 'password', 'location']

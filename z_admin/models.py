@@ -56,9 +56,14 @@ class Coffee(models.Model): # This is the model for the coffee
 
 # ORDER MODEL
 class Order(models.Model): # This is the model for the orders
+    # STATUS_CHOICES = [
+    #     ('Pending', 'Pending'),
+    #     ('Delivered', 'Delivered'),
+    # ]
     coffee = models.ForeignKey(Coffee, on_delete=models.CASCADE)
     user = models.ForeignKey('z_user.User_Account', on_delete=models.CASCADE, related_name="order")  # Connect to user account
     order_at = models.DateTimeField(auto_now_add=True)
+    # status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
 
     def __str__(self):
         return f"{self.user}"

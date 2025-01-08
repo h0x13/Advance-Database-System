@@ -9,7 +9,7 @@ urlpatterns = [
     path('landing-page/', views.landing_page, name='landing-page'), # READ
     path('admin-dashboard/', views.admin_dashboard, name='admin-dashboard'), # READ
     path('audit-trail/', views.audit_trail, name='audit-trail'), # READ
-    path('order-records', views.order_records, name='order-records'), # READ
+    path('order-records/', views.order_records, name='order-records'), # READ
 
 
     path('add-coffee/', views.add_coffee, name='add-coffee'), # CREATE

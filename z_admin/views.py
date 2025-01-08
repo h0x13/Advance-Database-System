@@ -97,24 +97,9 @@ def delete_coffee(request, pk):    # DELETE
 @login_required(login_url='admin-login')
 def order_records(request):
     order_of_users = Order.objects.all()
-    print(order_of_users)
-
-    # context = {
-    #     "users_first_name": order_of_users.user.first_name,
-    #     "users_last_name": order_of_users.user.last_name,
-    #     "users_phone_number": order_of_users.phone_number,
-    #     "users_location": order_of_users.user.location,
-
-    #     "coffee_name": order_of_users.coffee.name,
-    #     "coffee_price": order_of_users.coffee.price,
-
-    #     "order_time": order_of_users.order_at,
-        
-    # }
 
     context = {
         "orders": order_of_users,
-        
     }
 
     return render(request, 'temp_admin/admin-order.html', context)
