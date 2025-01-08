@@ -4,8 +4,12 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+
 from .forms import Admin_Login, Add_Coffee, Edit_Coffee
-from .models import Admin_Account, Coffee
+
+from .models import Admin_Account, Coffee, Order
+from z_user.models import User_Account
 
 
 
@@ -37,7 +41,14 @@ def admin_logout(request):
 
 @login_required(login_url='admin-login')
 def admin_dashboard(request):
-    return render(request, 'temp_admin/admin-dashboard.html')
+    active_users = User_Account.objects.all()
+    total_orders = Order.objects.all()
+
+    context = {
+        'active_users_count': active_users.count(),
+        'total_orders_count': total_orders.count(),
+    }
+    return render(request, 'temp_admin/admin-dashboard.html', context)
 
 
 
@@ -78,6 +89,38 @@ def delete_coffee(request, pk):    # DELETE
     coffee = Coffee.objects.get(id=pk)
     coffee.delete()
     return HttpResponseRedirect(reverse('coffee-view'))
+
+
+
+
+
+@login_required(login_url='admin-login')
+def order_records(request):
+    order_of_users = Order.objects.all()
+    print(order_of_users)
+
+    # context = {
+    #     "users_first_name": order_of_users.user.first_name,
+    #     "users_last_name": order_of_users.user.last_name,
+    #     "users_phone_number": order_of_users.phone_number,
+    #     "users_location": order_of_users.user.location,
+
+    #     "coffee_name": order_of_users.coffee.name,
+    #     "coffee_price": order_of_users.coffee.price,
+
+    #     "order_time": order_of_users.order_at,
+        
+    # }
+
+    context = {
+        "orders": order_of_users,
+        
+    }
+
+    return render(request, 'temp_admin/admin-order.html', context)
+
+
+
 
 
 

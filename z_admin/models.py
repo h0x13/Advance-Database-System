@@ -4,6 +4,7 @@ from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
 
 # Create your models here.
+# ADMIN ACCOUNT MODEL
 class Admin_Account(models.Model): # This is the model for the admin login
 
     username = models.CharField(max_length=150)
@@ -35,18 +36,9 @@ def delete_user_account(sender, instance, **kwargs):
         pass
 
 
-# class Audit_Trail(models.Model):
-#     account = models.ForeignKey(Admin_Account, on_delete=models.CASCADE)
-#     login_timw = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#         return self.username
-
-#     class Meta:
-#         verbose_name = "Audit Trail"
-#         verbose_name_plural = "Audit Trails"
 
 
+# COFFEE MODEL
 class Coffee(models.Model): # This is the model for the coffee
     name = models.CharField(max_length=150)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -58,3 +50,21 @@ class Coffee(models.Model): # This is the model for the coffee
     class Meta:
         verbose_name = "Coffee"
         verbose_name_plural = "Coffees"
+
+
+
+
+# ORDER MODEL
+class Order(models.Model): # This is the model for the orders
+    coffee = models.ForeignKey(Coffee, on_delete=models.CASCADE)
+    user = models.ForeignKey('z_user.User_Account', on_delete=models.CASCADE, related_name="order")  # Connect to user account
+    order_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}"
+
+    class Meta:
+        verbose_name = "Order"
+        verbose_name_plural = "Orders"
+        ordering = ['-order_at']
+

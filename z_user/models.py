@@ -52,3 +52,7 @@ class Purchase_Record(models.Model):
     class Meta:
         verbose_name = "Purchase Record"
         verbose_name_plural = "Purchase Records"
+        ordering = ['-purchase_date']
+
+
+        

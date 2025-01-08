@@ -9,9 +9,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 
-from z_admin.models import Coffee
-from .models import User_Account, Purchase_Record
 from .forms import User_Register, User_Login
+
+from z_admin.models import Coffee, Order
+from .models import User_Account, Purchase_Record
+
 
 # Create your views here.
 
@@ -88,10 +90,21 @@ def profile(request):
         "phone_number": user_account.phone_number,
         "email": user_account.email,
         "location": user_account.location,
-        "created_at": user_account.created_at,
-        "purchase": purchase,
+        "created_at": user_account.created_at, 
+
+    
+        "purchase": purchase, # This is the purchase record
+        "purchase_count": purchase.count(),
     }
     return render(request, "temp_users/profile.html", context)
 
 
 
+# This is the order coffee page
+@login_required(login_url='login')
+def order_coffee(request, pk):
+    coffee = get_object_or_404(Coffee, id=pk)
+    user = User_Account.objects.get(username=request.user)
+    Order.objects.create(user=user, coffee=coffee)
+    Purchase_Record.objects.create(user_account=user, order=coffee)
+    return redirect('coffee')
