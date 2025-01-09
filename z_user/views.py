@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -109,6 +109,15 @@ def edit_profile(request):
         form = Edit_Form(request.POST, instance=user_account)
         if form.is_valid():
             form.save()
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = request.user
+            user.username = username
+            user.set_password(password)
+            user.save()
+            update_session_auth_hash(request, user)
+
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('profile')
         else:
@@ -129,6 +138,13 @@ def order_coffee(request, pk):
     Order.objects.create(user=user, coffee=coffee)
     Purchase_Record.objects.create(user_account=user, order=coffee)
     return redirect('coffee')
+
+
+
+
+@login_required(login_url='login')
+def users_feedback(request):
+    pass
 
 
 
