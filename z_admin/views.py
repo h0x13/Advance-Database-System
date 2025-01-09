@@ -119,3 +119,15 @@ def order_records(request):
 @login_required(login_url='admin-login')
 def audit_trail(request):
     return render(request, 'temp_admin/audit-trails.html')
+
+
+
+@login_required(login_url='user-list')
+def user_list(request):
+    active_users = User_Account.objects.all()
+
+    context = {
+        "users": active_users,
+    }
+
+    return render(request, 'temp_admin/user-list.html', context)

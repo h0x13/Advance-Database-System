@@ -7,9 +7,12 @@ urlpatterns = [
     path('admin-login/', views.admin_login, name='admin-login'), # REDIRECT
     path('admin-logout/', views.admin_logout, name='admin-logout'), # REDIRECT
     path('landing-page/', views.landing_page, name='landing-page'), # READ
+
+
     path('admin-dashboard/', views.admin_dashboard, name='admin-dashboard'), # READ
     path('audit-trail/', views.audit_trail, name='audit-trail'), # READ
     path('order-records/', views.order_records, name='order-records'), # READ
+    path('user-list/', views.user_list, name='user-list'),
 
 
     path('add-coffee/', views.add_coffee, name='add-coffee'), # CREATE
