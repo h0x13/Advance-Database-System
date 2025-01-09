@@ -1,5 +1,6 @@
 from django import forms
 from .models import User_Account
+from z_admin.models import Order
 
 class User_Register(forms.Form):
     username = forms.CharField(
@@ -173,3 +174,18 @@ class Edit_Form(forms.ModelForm):
     class Meta:
         model = User_Account
         fields = ['username', 'first_name','last_name', 'phone_number', 'email', 'password', 'location']
+
+
+class Select_Quantity(forms.ModelForm):
+    quantity = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
+
+    class Meta:
+        model = Order
+        fields = ['quantity']

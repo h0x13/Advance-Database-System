@@ -44,6 +44,7 @@ def delete_user_account(sender, instance, **kwargs):
 class Purchase_Record(models.Model):
     user_account = models.ForeignKey(User_Account, on_delete=models.CASCADE) # This is the user account that made the purchase
     order = models.ForeignKey('z_admin.Coffee', on_delete=models.CASCADE) # This is the coffee that was purchased
+    quantity = models.IntegerField(default=0)
     purchase_date = models.DateTimeField(auto_now_add=True) # This is the date the purchase was made
 
     def __str__(self):

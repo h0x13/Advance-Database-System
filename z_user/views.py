@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 
-from .forms import User_Register, User_Login, Edit_Form
+from .forms import User_Register, User_Login, Edit_Form, Select_Quantity
 
 from z_admin.models import Coffee, Order
 from .models import User_Account, Purchase_Record
@@ -68,12 +68,32 @@ def homepage(request):
 
 # This is the view coffee page
 @login_required(login_url='login')
-def coffee(request):
+def coffee(request, pk=None):
     coffees = Coffee.objects.all()
+    user = User_Account.objects.get(username=request.user)
+    
+    if request.method == 'POST':
+        form = Select_Quantity(request.POST, instance=user)
+        if form.is_valid():
+            COFFEE = get_object_or_404(Coffee, pk=pk)
+            quantity = form.cleaned_data.get('quantity')
+
+            Order.objects.create(user=user, coffee=COFFEE, quantity=quantity)
+            Purchase_Record.objects.create(user_account=user, order=COFFEE, quantity=quantity)
+            return redirect('coffee')
+        else:
+            messages.error(request, 'Error Order')
+
+    else:
+        form = Select_Quantity(instance=user)
+
+
     context = {
+        'form': form,
         'coffees': coffees
     }
     return render(request, 'temp_users/coffee.html', context)
+
 
 
 
@@ -131,13 +151,25 @@ def edit_profile(request):
 
 
 # This is the order coffee page
-@login_required(login_url='login')
-def order_coffee(request, pk):
-    coffee = get_object_or_404(Coffee, id=pk)
-    user = User_Account.objects.get(username=request.user)
-    Order.objects.create(user=user, coffee=coffee)
-    Purchase_Record.objects.create(user_account=user, order=coffee)
-    return redirect('coffee')
+# @login_required(login_url='login')
+# def order_coffee(request, pk):
+#     coffee = get_object_or_404(Coffee, id=pk)
+#     user = User_Account.objects.get(username=request.user)
+
+#     if request.method == 'POST':
+#         form = Select_Quantity(request.POST, instance=user)
+#         if form.is_valid():
+#             quantity = form.cleaned_data.get('quantity')
+
+#             Order.objects.create(user=user, coffee=coffee, quantity=quantity)
+#             Purchase_Record.objects.create(user_account=user, order=coffee, quantity=quantity)
+#             return redirect('coffee')
+#         else:
+#             messages.error(request, 'Error Order')
+#     else:
+#         form = "sdfjhgjkhbsdfj"
+
+#     return render(request, 'temp_users/coffee.html', {'form': form, 'coffee': coffee})
 
 
 

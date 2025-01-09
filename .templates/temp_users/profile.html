@@ -143,6 +143,7 @@ Profile Dashboard
                                     <th scope="col">Date</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -152,6 +153,7 @@ Profile Dashboard
                                     <td>{{ purchase.purchase_date }}</td>
                                     <td>{{ purchase.order.name }}</td>
                                     <td>{{ purchase.order.price }}</td>
+                                    <td>{{ purchase.quantity }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
