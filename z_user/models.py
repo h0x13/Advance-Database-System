@@ -55,4 +55,9 @@ class Purchase_Record(models.Model):
         ordering = ['-purchase_date']
 
 
+
+class Users_Feedback(models.Model):
+    user = models.ForeignKey(User_Account, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+    commented_at = models.DateTimeField(auto_now_add=True)
         

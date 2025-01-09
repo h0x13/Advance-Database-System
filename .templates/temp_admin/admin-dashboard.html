@@ -33,7 +33,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-uppercase mb-2">Revenue</h6>
-                            <h2 class="mb-0">$42,589</h2>
+                            <h2 class="mb-0">${{ total }}</h2>
                         </div>
                         <div>
                             <i class="bi bi-currency-dollar display-6"></i>
@@ -94,49 +94,32 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Recent Orders</h5>
-                    <button class="btn btn-primary btn-sm">View All</button>
+                    <a href="{% url 'order-records' %}" class="btn btn-primary btn-sm">View All</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
                             <thead class="bg-light">
                                 <tr>
-                                    <th scope="col">Order ID</th>
+                                    <th scope="col">No.</th>
                                     <th scope="col">Customer</th>
-                                    <th scope="col">Product</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Coffee</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for order in orders %}
                                 <tr>
-                                    <td>#12345</td>
-                                    <td>John Doe</td>
-                                    <td>Cappuccino</td>
-                                    <td>$8.99</td>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ order.user.first_name }} {{ order.user.last_name }}</td>
+                                    <td>{{ order.user.username }}</td>
+                                    <td>{{ order.coffee.name }}</td>
+                                    <td>{{ order.coffee.price }}</td>
                                     <td><span class="badge bg-success">Completed</span></td>
                                 </tr>
-                                <tr>
-                                    <td>#12346</td>
-                                    <td>Jane Smith</td>
-                                    <td>Latte</td>
-                                    <td>$7.49</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#12347</td>
-                                    <td>Mike Johnson</td>
-                                    <td>Espresso</td>
-                                    <td>$4.99</td>
-                                    <td><span class="badge bg-info">Processing</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#12348</td>
-                                    <td>Sarah Williams</td>
-                                    <td>Mocha</td>
-                                    <td>$6.99</td>
-                                    <td><span class="badge bg-danger">Cancelled</span></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

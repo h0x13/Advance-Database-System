@@ -5,10 +5,11 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 
 from .forms import Admin_Login, Add_Coffee, Edit_Coffee
 
-from .models import Admin_Account, Coffee, Order
+from .models import Admin_Account, Coffee, Order, AdminLogs
 from z_user.models import User_Account
 
 
@@ -26,6 +27,7 @@ def admin_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                # AdminLogs.objects.create(admin_username=user.username, action='login') # save to admin logs [login]
                 return redirect('admin-dashboard')
             else:
                 messages.error(request, 'Invalid username or password')
@@ -36,17 +38,22 @@ def admin_login(request):
     return render(request, "temp_admin/admin-login.html", context)
 
 def admin_logout(request):
+    # AdminLogs.objects.create(admin_username=request.user.username, action='logout') # save to admin logs [logout]
     logout(request)
     return redirect('landing-page')
 
 @login_required(login_url='admin-login')
 def admin_dashboard(request):
     active_users = User_Account.objects.all()
-    total_orders = Order.objects.all()
+    order_of_users = Order.objects.all()
 
+    total_price = Order.objects.aggregate(total=Sum('coffee__price'))['total'] or 0
     context = {
         'active_users_count': active_users.count(),
-        'total_orders_count': total_orders.count(),
+        'total_orders_count': order_of_users.count(),
+
+        "orders": order_of_users[:7], # Responsible for fetching in order table
+        "total": total_price,
     }
     return render(request, 'temp_admin/admin-dashboard.html', context)
 

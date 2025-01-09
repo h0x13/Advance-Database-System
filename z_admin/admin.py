@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Admin_Account, Coffee, Order
+from .models import Admin_Account, Coffee, Order, AdminLogs
 
 # Register your models here.
 # admin.site.register(Admin_Account)
@@ -17,3 +17,8 @@ class Coffee(admin.ModelAdmin):
 @admin.register(Order)
 class Order(admin.ModelAdmin):
     list_display = ("user", "coffee")
+
+@admin.register(AdminLogs)
+class AdminLogs(admin.ModelAdmin):
+    list_display = ("admin","action", "log_time")
+
