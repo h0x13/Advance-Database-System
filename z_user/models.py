@@ -13,7 +13,6 @@ class User_Account(models.Model):
     email = models.EmailField(max_length=50)
     password = models.CharField(max_length=50)
     location = models.CharField(max_length=50, default="default") #
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -22,6 +21,7 @@ class User_Account(models.Model):
     class Meta:
         verbose_name = "User Account"
         verbose_name_plural = "User Accounts"
+        ordering = ['-created_at']
 
 @receiver(post_save, sender=User_Account)
 def create_user_account(sender, instance, created, **kwargs):

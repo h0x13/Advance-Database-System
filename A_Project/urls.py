@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from z_account import views
+
+from django.conf import settings
+from django.conf.urls.static import static
 # from z_admin import views
 # from z_user import views
 
@@ -32,3 +35,7 @@ urlpatterns = [
     path('user-admin/', include('z_admin.urls')),
     path('user/', include('z_user.urls')),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

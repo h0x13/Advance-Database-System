@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
+from datetime import datetime
 
 # Create your models here.
 # ADMIN ACCOUNT MODEL
@@ -36,12 +37,17 @@ def delete_user_account(sender, instance, **kwargs):
         pass
 
 
+def img_path(instance, filename):
+    ext = filename.split(".")[-1]
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    return f"{timestamp}.{ext}"
 
 
 # COFFEE MODEL
 class Coffee(models.Model): # This is the model for the coffee
     name = models.CharField(max_length=150)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to=img_path, default="default.jpg", blank=True,)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

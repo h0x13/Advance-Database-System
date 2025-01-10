@@ -8,9 +8,8 @@ Coffee View
     <div class="container">
         <!-- Hero Section -->
         <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold mb-3">Welcome to the { Coffee.Shop.Name }</h1>
-            <p class="lead text-secondary mb-4">Discover our carefully curated selection of premium coffees</p>
-            <hr class="w-75 mx-auto  opacity-75 mb-5">
+            <h1 class="display-4 fw-bold mb-3">View</h1>
+            <hr class="w-100 mx-auto  opacity-75 mb-5">
         </div>
 
         <!-- Menu Grid -->
@@ -20,7 +19,7 @@ Coffee View
             {% for coffee in coffees %}
             <div class="col-md-4 col-lg-3">
                 <div class="card h-100 border-0 shadow-sm">
-                    <img class="card-img-top p-3" src="data:image/jpeg;base64">
+                    <img class="card-img-top p-3" src="{{ coffee.image.url }}">
                     <div class="card-body text-center">
                         <h4 class="card-title fw-bold mb-3">{{ coffee.name }}</h4>
                         <p class="fs-5 text-muted mb-3">{{ coffee.price }}</p>

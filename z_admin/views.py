@@ -63,7 +63,7 @@ def admin_dashboard(request):
 @login_required(login_url='admin-login')
 def add_coffee(request):    # CREATE
     if request.method == 'POST':
-        form = Add_Coffee(request.POST)
+        form = Add_Coffee(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('admin-dashboard'))

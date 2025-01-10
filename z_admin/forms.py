@@ -22,14 +22,14 @@ class Admin_Login(forms.Form):
 
 
 class Add_Coffee(forms.ModelForm):
-    # image = forms.ImageField(
-    #     widget=forms.FileInput(
-    #         attrs={
-    #             'class': 'form-control'
-    #             }
-    #     ),
-    #     required=True,
-    # )
+    image = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
     name = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -50,12 +50,13 @@ class Add_Coffee(forms.ModelForm):
 
     class Meta:
         model = Coffee
-        fields = ['name', 'price']
+        fields = ['name', 'price', 'image']
 
     def save(self, commit=True):
         coffee = Coffee(
             name=self.cleaned_data['name'],
             price=self.cleaned_data['price'],
+            image=self.cleaned_data['image']
         )
         if commit:
             coffee.save()
@@ -63,6 +64,14 @@ class Add_Coffee(forms.ModelForm):
     
 
 class Edit_Coffee(forms.ModelForm):
+    image = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'class': 'form-control'
+                }
+        ),
+        required=True,
+    )
     name = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -83,4 +92,4 @@ class Edit_Coffee(forms.ModelForm):
 
     class Meta:
         model = Coffee
-        fields = ['name', 'price']
+        fields = ['name', 'price', 'image']
