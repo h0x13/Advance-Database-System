@@ -1,6 +1,7 @@
 from django import forms
 from .models import User_Account
 from z_admin.models import Order
+from z_user.models import Users_Feedback
 
 class User_Register(forms.Form):
     username = forms.CharField(
@@ -189,3 +190,24 @@ class Select_Quantity(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['quantity']
+
+
+
+
+
+class Comment_Form(forms.ModelForm):
+    comment = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'name': 'review',
+                'rows': 3,
+                'placeholder': 'Write your review...'
+            }
+        ),
+        required=True,
+    )
+
+    class Meta:
+        model = Users_Feedback
+        fields = ['comment']

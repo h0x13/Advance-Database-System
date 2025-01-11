@@ -9,10 +9,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 
-from .forms import User_Register, User_Login, Edit_Form, Select_Quantity
+from .forms import User_Register, User_Login, Edit_Form, Select_Quantity, Comment_Form
 
 from z_admin.models import Coffee, Order
-from .models import User_Account, Purchase_Record
+from .models import User_Account, Purchase_Record, Users_Feedback
 
 
 # Create your views here.
@@ -71,28 +71,54 @@ def homepage(request):
 def coffee(request, pk=None):
     coffees = Coffee.objects.all()
     user = User_Account.objects.get(username=request.user)
-    
+
+    COFFEE = None
+    users_comment = None
+
+    if pk:  # Fetch the selected coffee and its comments
+        COFFEE = get_object_or_404(Coffee, pk=pk)
+        users_comment = Users_Feedback.objects.filter(coffee=COFFEE)
+
     if request.method == 'POST':
         form = Select_Quantity(request.POST, instance=user)
-        if form.is_valid():
-            COFFEE = get_object_or_404(Coffee, pk=pk)
-            quantity = form.cleaned_data.get('quantity')
+        comment_form = Comment_Form(request.POST)
 
+        # Process quantity form
+        if form.is_valid() and COFFEE:
+            quantity = form.cleaned_data.get('quantity')
             Order.objects.create(user=user, coffee=COFFEE, quantity=quantity)
             Purchase_Record.objects.create(user_account=user, order=COFFEE, quantity=quantity)
-            return redirect('coffee')
-        else:
-            messages.error(request, 'Error Order')
+            messages.success(request, 'Order placed successfully!')
+            return redirect('coffee', pk=pk)
 
-    else:
+        # Process comment form
+        if comment_form.is_valid() and COFFEE:
+            comment = comment_form.cleaned_data.get('comment')
+            Users_Feedback.objects.create(user=user, coffee=COFFEE, comment=comment)
+            messages.success(request, 'Comment submitted successfully!')
+            return redirect('coffee', pk=pk)
+
+        # Handle invalid forms
+        if not form.is_valid():
+            messages.error(request, 'Error placing order. Please try again.')
+        if not comment_form.is_valid():
+            messages.error(request, 'Error submitting comment. Please try again.')
+
+    else:  # GET request
         form = Select_Quantity(instance=user)
+        comment_form = Comment_Form()
 
-
+    # Prepare context
     context = {
         'form': form,
-        'coffees': coffees
+        'coffees': coffees,
+        'comments': comment_form,
+        'all_comments': users_comment if pk else None,
+        'selected_coffee': COFFEE,  # Pass the selected coffee for reference
     }
     return render(request, 'temp_users/coffee.html', context)
+
+
 
 
 
@@ -150,33 +176,17 @@ def edit_profile(request):
 
 
 
-# This is the order coffee page
+
 # @login_required(login_url='login')
-# def order_coffee(request, pk):
-#     coffee = get_object_or_404(Coffee, id=pk)
-#     user = User_Account.objects.get(username=request.user)
-
+# def users_feedback(request):
 #     if request.method == 'POST':
-#         form = Select_Quantity(request.POST, instance=user)
+#         form = Comment_Form(request.POST)
 #         if form.is_valid():
-#             quantity = form.cleaned_data.get('quantity')
-
-#             Order.objects.create(user=user, coffee=coffee, quantity=quantity)
-#             Purchase_Record.objects.create(user_account=user, order=coffee, quantity=quantity)
-#             return redirect('coffee')
-#         else:
-#             messages.error(request, 'Error Order')
+#             form.save()
+#             return HttpResponseRedirect(reverse('coffee'))
 #     else:
-#         form = "sdfjhgjkhbsdfj"
-
-#     return render(request, 'temp_users/coffee.html', {'form': form, 'coffee': coffee})
-
-
-
-
-@login_required(login_url='login')
-def users_feedback(request):
-    pass
+#         form = Comment_Form()
+#     return render(request, 'temp_users/register.html', {'form': form})
 
 
 

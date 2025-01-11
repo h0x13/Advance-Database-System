@@ -4,6 +4,9 @@ from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
 
 
+from z_admin.models import Coffee
+
+
 # Create your models here.
 class User_Account(models.Model):
     username = models.CharField(max_length=50)
@@ -59,6 +62,16 @@ class Purchase_Record(models.Model):
 
 class Users_Feedback(models.Model):
     user = models.ForeignKey(User_Account, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=255)
+    coffee = models.ForeignKey(Coffee, on_delete=models.CASCADE)
+    comment = models.TextField()
     commented_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+    
+    class Meta:
+        verbose_name = "Users Feedback"
+        verbose_name_plural = "Users Feedback"
+        ordering = ['-commented_at']
+
         
