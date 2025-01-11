@@ -12,22 +12,22 @@
     <!-- icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- <style>
+    <style>
         body {
-            background-image: url('../imgs/background.jpg');
+            background-image: url('./imgs/background.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-    </style> -->
+    </style>
 </head>
-<body class="bg-light">
+<body style="background-image: url('./imgs/background.jpg');">
     <div class="container min-vh-100 d-flex align-items-center justify-content-center position-relative">
         <a href="{% url 'admin-login' %}" class="position-absolute top-0 end-0 m-3 text-dark" title="Login as Admin">
             <i class="bi bi-person-gear fs-1"></i>
         </a>
         <div class="text-center">
-            <h1 class="display-1 fw-bold mb-4">Welcome</h1>
+            <h1 class="display-1 fw-bold mb-4">Bocx N' Co.</h1>
             <p class="lead mb-5"> Lorem ipsum dolor sit amet consectetur  </p>
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                 <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 gap-3">Login</a>

@@ -142,7 +142,6 @@ Profile Dashboard
                                     <th scope="col">#</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                 </tr>
                             </thead>
@@ -152,7 +151,6 @@ Profile Dashboard
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ purchase.purchase_date }}</td>
                                     <td>{{ purchase.order.name }}</td>
-                                    <td>{{ purchase.order.price }}</td>
                                     <td>{{ purchase.quantity }}</td>
                                 </tr>
                                 {% endfor %}

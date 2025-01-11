@@ -3,7 +3,7 @@
     Audit Trails
 {% endblock %}
 {% block content %}
-<div class="container-fluid p-4">
+<div class="container p-4">
     <!-- Header Section -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -18,27 +18,21 @@
             <!-- Search and Filter Bar -->
             <div class="border-bottom p-3">
                 <div class="row g-3">
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Search logs...">
+                    <div class="col-md-5">
+                        <form method="GET" action="{% url 'audit-trail' %}">
+                            <input type="text" name="search" class="form-control" placeholder="Search logs..." value="{{ search_query }}">
                     </div>
                     <div class="col-md-2">
-                        <select class="form-select">
-                            <option selected>All Actions</option>
-                            <option>Create</option>
-                            <option>Update</option>
-                            <option>Delete</option>
-                            <option>Login</option>
-                            <option>Logout</option>
+                        <select class="form-select" name="action" onchange="this.form.submit()">
+                            <option {% if not action_filter or action_filter == 'All Actions' %}selected{% endif %}>All Actions</option>
+                            <option value="Create" {% if action_filter == 'Create' %}selected{% endif %}>Create</option>
+                            <option value="Update" {% if action_filter == 'Update' %}selected{% endif %}>Update</option>
+                            <option value="Delete" {% if action_filter == 'Delete' %}selected{% endif %}>Delete</option>
+                            <option value="Login" {% if action_filter == 'Login' %}selected{% endif %}>Login</option>
+                            <option value="Logout" {% if action_filter == 'Logout' %}selected{% endif %}>Logout</option>
                         </select>
                     </div>
-                    <!-- <div class="col-md-2">
-                        <select class="form-select">
-                            <option selected>All Users</option>
-                            <option>Admins</option>
-                            <option>Staff</option>
-                            <option>Customers</option>
-                        </select>
-                    </div> -->
+                </form>
                 </div>
             </div>
 
@@ -47,41 +41,33 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="bg-light">
                         <tr>
-                            <th scope="col">Timestamp</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Action</th>
-                            <!-- <th scope="col">Details</th> -->
-                            <!-- <th scope="col">Status</th>
-                            <th scope="col">Actions</th> -->
+                            <th scope="col" class="w-25">Timestamp</th>
+                            <th scope="col" class="w-25">User</th>
+                            <th scope="col" class="w-25">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Row 1 -->
+                        {% for log in logs %}
                         <tr>
                             <td>
-                                <div>2024-01-05 14:30:22</div>
-                                <small class="text-muted">2 mins ago</small>
+                                <div>{{ log.log_time|date:"F d, Y h:i A" }}</div>
+                                <small class="text-muted">{{ log.log_time|timesince }} ago</small>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <div class="fw-bold">John Doe</div>
+                                        <div class="fw-bold">{{ log.admin }}</div>
                                         <small class="text-muted">Admin</small>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <span class="badge bg-info">UPDATE</span>
-                                <div class="text-muted small">Product Price</div>
+                                <!-- <span class="badge bg-info">{{ log.action }}</span> -->
+                                <div class="text-muted text-capitalize fw-semibold">{{ log.action}}</div>
                             </td>
-                            <!-- <td>Updated price from $25.99 to $29.99</td> -->
-                            <!-- <td><span class="badge bg-success">Success</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-secondary">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                            </td> -->
                         </tr>
+                        {% endfor %}
 
                     </tbody>
                 </table>

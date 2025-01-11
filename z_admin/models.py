@@ -56,6 +56,7 @@ class Coffee(models.Model): # This is the model for the coffee
     class Meta:
         verbose_name = "Coffee"
         verbose_name_plural = "Coffees"
+        ordering = ['-created_at']
 
 
 
@@ -86,6 +87,14 @@ class AdminLogs(models.Model):
     admin = models.ForeignKey(Admin_Account, on_delete=models.CASCADE)
     action = models.CharField(max_length=50, default='default')
     log_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.admin}"
+    
+    class Meta:
+        verbose_name = "AdminLogs"
+        verbose_name_plural = "AdminLogs"
+        ordering = ['-log_time']
 
 
 # UNFINISH
