@@ -1,41 +1,32 @@
 {% extends "temp_users/base.html" %}
 
-{% block title %}
-Profile Dashboard
-{% endblock %}
+{% block title %}Profile Dashboard{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container py-5">
     <!-- Profile Header -->
     <div class="row mb-5">
         <div class="col-12">
-            <div class="card bg-dark text-white">
+            <div class="card bg-gradient" style="background: linear-gradient(135deg, var(--coffee-dark), var(--coffee-medium));">
                 <div class="card-body p-5">
                     <div class="row align-items-center">
-                        <!-- <div class="col-lg-4 text-center text-lg-start">
-                            <div class="position-relative d-inline-block">
-                                <img src="https://via.placeholder.com/150" 
-                                     class="rounded-circle img-thumbnail border-light shadow" 
-                                     alt="Profile Picture"
-                                     width="200" 
-                                     height="200">
-                                <span class="position-absolute bottom-0 end-0 p-3 bg-success border border-dark rounded-circle">
-                                    <span class="visually-hidden">Online status</span>
-                                </span>
-                            </div>
-                        </div> -->
                         <div class="col-lg-8 text-center text-lg-start mt-4 mt-lg-0">
                             <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
-                                <div>
-                                    <h1 class="display-4 fw-bold mb-1">{{ username }}</h1>
-                                    <p class="lead text-light mb-3 fw-semibold">{{ first_name }} {{ last_name }}</p>
+                                <div class="text-white">
+                                    <h1 class="display-4 fw-bold mb-1">
+                                        <i class="bi bi-person-circle me-3"></i>{{ username }}
+                                    </h1>
+                                    <p class="lead mb-3 fw-semibold opacity-90">{{ first_name }} {{ last_name }}</p>
                                     <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
-                                        <span class="badge bg-primary"> Application User </span>
-                                        <!-- <span class="badge bg-info">Verified</span> -->
+                                        <span class="badge" style="background-color: var(--cream); color: var(--coffee-dark)">
+                                            <i class="bi bi-cup-hot me-1"></i>Coffee Enthusiast
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="mt-3 mt-lg-0 ">
-                                    <a href="{% url 'edit-profile' %}" class="btn btn-outline-light btn-lg">Edit Profile</a>
+                                <div class="mt-3 mt-lg-0">
+                                    <a href="{% url 'edit-profile' %}" class="btn btn-light">
+                                        <i class="bi bi-pencil-square me-2"></i>Edit Profile
+                                    </a>
                                 </div>
                             </div> 
                         </div>
@@ -50,43 +41,53 @@ Profile Dashboard
         <!-- Left Column -->
         <div class="col-lg-4">
             <!-- Quick Stats -->
-            <div class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4 hover-lift">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Statistics</h4>
+                    <h4 class="card-title mb-4 text-coffee">
+                        <i class="bi bi-graph-up me-2"></i>Statistics
+                    </h4>
                     <div class="row g-3">
                         <div class="col-4 text-center">
-                            <h3 class="fw-bold text-dark">{{ purchase_count }}</h3>
-                            <small class="text-muted">Purchase</small>
+                            <div class="p-3 rounded-3" style="background-color: var(--cream);">
+                                <h3 class="fw-bold text-coffee">{{ purchase_count }}</h3>
+                                <small class="text-coffee-medium">Purchases</small>
+                            </div>
                         </div>
                         <div class="col-4 text-center">
-                            <h3 class="fw-bold text-dark">14.3K</h3>
-                            <small class="text-muted">Followers</small>
+                            <div class="p-3 rounded-3" style="background-color: var(--cream);">
+                                <h3 class="fw-bold text-coffee">14.3K</h3>
+                                <small class="text-coffee-medium">Points</small>
+                            </div>
                         </div>
                         <div class="col-4 text-center">
-                            <h3 class="fw-bold text-dark">892</h3>
-                            <small class="text-muted">Following</small>
+                            <div class="p-3 rounded-3" style="background-color: var(--cream);">
+                                <h3 class="fw-bold text-coffee">892</h3>
+                                <small class="text-coffee-medium">Reviews</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Contact Information -->
-            <div class="card shadow-sm">
+            <div class="card shadow-sm hover-lift">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Contact Information</h4>
+                    <h4 class="card-title mb-4 text-coffee">
+                        <i class="bi bi-info-circle me-2"></i>Contact Information
+                    </h4>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex align-items-center">
-                            <i class="bi bi-geo-alt-fill text-dark me-3"></i>
+                        <li class="list-group-item d-flex align-items-center border-coffee">
+                            <i class="bi bi-geo-alt-fill text-coffee me-3 fs-4"></i>
                             <div>
-                                <small class="d-block fw-semibold">Location</small>
-                                <span class="text-muted">{{ location }}</span>
+                                <small class="d-block fw-semibold text-coffee">Location</small>
+                                <span class="text-coffee-medium">{{ location }}</span>
                             </div>
                         </li>
-                        <li class="list-group-item d-flex align-items-center">
-                            <i class="bi bi-calendar-event-fill text-dark me-3"></i>
+                        <li class="list-group-item d-flex align-items-center border-coffee">
+                            <i class="bi bi-calendar-event-fill text-coffee me-3 fs-4"></i>
                             <div>
-                                <small class="d-block fw-semibold">Joined</small>
-                                <span class="text-muted">{{ created_at }}</span>
+                                <small class="d-block fw-semibold text-coffee">Joined</small>
+                                <span class="text-coffee-medium">{{ created_at }}</span>
                             </div>
                         </li>
                     </ul>
@@ -97,47 +98,51 @@ Profile Dashboard
         <!-- Right Column -->
         <div class="col-lg-8">
             <!-- About Section -->
-            <div class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4 hover-lift">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="card-title mb-0">About Me</h4>
+                        <h4 class="card-title mb-0 text-coffee">
+                            <i class="bi bi-person-lines-fill me-2"></i>About Me
+                        </h4>
                     </div>
-                    <p class="card-text">
-                        I am {{first_name}} {{last_name}} the user of the application.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, laborum doloremque? Molestias hic tempora facilis, ipsa aspernatur vitae molestiae sequi eveniet aliquid ducimus esse necessitatibus quibusdam laboriosam ipsam? Sed, nobis?
+                    <p class="card-text text-coffee-medium">
+                        I am {{first_name}} {{last_name}}, a coffee enthusiast and regular at Bocx Coffee N' Co.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, laborum doloremque?
                     </p>
                 </div>
             </div>
 
             <!-- Purchase History Card -->
-            <div class="card shadow-sm">
+            <div class="card shadow-sm hover-lift">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="card-title mb-0">Purchase History</h4>
-                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#purchaseHistoryModal">
+                        <h4 class="card-title mb-0 text-coffee">
                             <i class="bi bi-clock-history me-2"></i>Purchase History
+                        </h4>
+                        <button class="btn btn-coffee" data-bs-toggle="modal" data-bs-target="#purchaseHistoryModal">
+                            View History
                         </button>
                     </div>
-                    <p class="text-muted">Click the button to view your complete purchase history.</p>
+                    <p class="text-coffee-medium">Click the button to view your complete purchase history.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Purchase History Modal -->
-    <div class="modal fade" id="purchaseHistoryModal" tabindex="-1" aria-labelledby="purchaseHistoryModalLabel" aria-hidden="true">
+    <div class="modal fade" id="purchaseHistoryModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="purchaseHistoryModalLabel">
+                <div class="modal-header" style="background: var(--coffee-dark); color: var(--cream);">
+                    <h5 class="modal-title">
                         <i class="bi bi-clock-history me-2"></i>Purchase History
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle">
-                            <thead class="table-light">
+                            <thead style="background: var(--cream);">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Date</th>
@@ -161,37 +166,58 @@ Profile Dashboard
             </div>
         </div>
     </div>
-
-    <!-- Profile Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="exampleModalLabel">Profile Details</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Username">
-                                <label for="floatingInput">Username</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="floatingEmail" placeholder="Email">
-                                <label for="floatingEmail">Email address</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+<style>
+    /* Additional styles for profile page */
+    .text-coffee {
+        color: var(--coffee-dark) !important;
+    }
+    
+    .text-coffee-medium {
+        color: var(--coffee-medium) !important;
+    }
+    
+    .border-coffee {
+        border-color: var(--cream-dark) !important;
+    }
+    
+    .btn-coffee {
+        background-color: var(--coffee-medium);
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-coffee:hover {
+        background-color: var(--coffee-dark);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .hover-lift {
+        transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Custom scrollbar */
+    .modal-body::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .modal-body::-webkit-scrollbar-track {
+        background: var(--cream);
+    }
+    
+    .modal-body::-webkit-scrollbar-thumb {
+        background: var(--coffee-medium);
+        border-radius: 4px;
+    }
+    
+    .modal-body::-webkit-scrollbar-thumb:hover {
+        background: var(--coffee-dark);
+    }
+</style>
 {% endblock %}

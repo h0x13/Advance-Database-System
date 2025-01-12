@@ -37,6 +37,7 @@ Coffee
                 </div>
 
                 <!-- Combined Coffee Detail and Order Modal -->
+                 {% for coffee in coffees %}
                 <div class="modal fade" id="coffeeModal{{ coffee.pk }}" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
@@ -79,13 +80,15 @@ Coffee
                                         <div class="flex-grow-1 overflow-auto mb-3" style="max-height: 300px;">
                                             {% if all_comments %}
                                                 {% for comment in all_comments %}
-                                                    <div class="mb-3 p-3 bg-white rounded-3 shadow-sm">
-                                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                                            <h6 class="fw-bold mb-0">{{ comment.user.username }}</h6>
-                                                            <small class="text-muted">{{ comment.commented_at|timesince }} ago</small>
+                                                    {% if comment.coffee == coffee %}
+                                                        <div class="mb-3 p-3 bg-white rounded-3 shadow-sm">
+                                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                <h6 class="fw-bold mb-0">{{ comment.user.username }}</h6>
+                                                                <small class="text-muted">{{ comment.commented_at|timesince }} ago</small>
+                                                            </div>
+                                                            <p class="mb-0">{{ comment.comment }}</p>
                                                         </div>
-                                                        <p class="mb-0">{{ comment.comment }}</p>
-                                                    </div>
+                                                    {% endif %}
                                                 {% empty %}
                                                     <p class="text-muted text-center">No reviews yet. Be the first to review!</p>
                                                 {% endfor %}
@@ -110,6 +113,7 @@ Coffee
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>

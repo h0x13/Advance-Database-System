@@ -3,35 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
-
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
-
-    <!-- icons -->
+    <title>Bocx Coffee N' Co.</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- <style>
-        body {
-            background-image: url('./imgs/background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coffee-dark: #2C1810;
+            --coffee-medium: #8B4513;
+            --coffee-light: #D2691E;
         }
-    </style> -->
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            min-height: 100vh;
+        }
+
+        .coffee-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(44, 24, 16, 0.2), rgba(44, 24, 16, 0.2)),
+                url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .content-wrapper {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .content-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--coffee-dark);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .lead {
+            color: var(--coffee-medium);
+            font-weight: 300;
+            font-size: 1.2rem;
+        }
+
+        .btn-coffee {
+            background-color: var(--coffee-medium);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .btn-coffee:hover {
+            background-color: var(--coffee-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-icon {
+            color: var(--coffee-dark);
+            transition: all 0.3s ease;
+        }
+
+        .admin-icon:hover {
+            color: var(--coffee-medium);
+            transform: rotate(15deg);
+        }
+
+        .coffee-decoration {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            color: var(--coffee-dark);
+        }
+
+        .decoration-1 { top: 10%; left: 10%; transform: rotate(-15deg); }
+        .decoration-2 { bottom: 10%; right: 10%; transform: rotate(15deg); }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
+    <div class="coffee-bg"></div>
+    <i class="bi bi-cup-hot coffee-decoration decoration-1"></i>
+    <i class="bi bi-cup-hot-fill coffee-decoration decoration-2"></i>
+    
     <div class="container min-vh-100 d-flex align-items-center justify-content-center position-relative">
-        <a href="{% url 'admin-login' %}" class="position-absolute top-0 end-0 m-3 text-dark" title="Login as Admin">
-            <i class="bi bi-person-gear fs-1"></i>
+        <a href="{% url 'admin-login' %}" class="position-absolute top-0 end-0 m-4" title="Login as Admin">
+            <i class="bi bi-person-gear fs-1 admin-icon"></i>
         </a>
-        <div class="text-center">
-            <h1 class="display-1 fw-bold mb-4">Bocx Coffee N' Co.</h1>
-            <p class="lead mb-5"> Lorem ipsum dolor sit amet consectetur  </p>
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
-                <a href="{% url 'register' %}" class="btn btn-primary btn-lg px-4 gap-3">Sign Up</a>
+        
+        <div class="content-wrapper">
+            <div class="text-center">
+                <h1 class="display-1 fw-bold mb-4 floating">
+                    <i class="bi bi-cup-hot me-2"></i>
+                    Bocx Coffee N' Co.
+                </h1>
+                <p class="lead mb-5">Experience the perfect blend of tradition and innovation</p>
+                <div class="d-grid gap-4 d-sm-flex justify-content-sm-center">
+                    <a href="{% url 'login' %}" class="btn btn-coffee">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                    </a>
+                    <a href="{% url 'register' %}" class="btn btn-coffee">
+                        <i class="bi bi-person-plus me-2"></i>Sign Up
+                    </a>
+                </div>
             </div>
         </div>
     </div>

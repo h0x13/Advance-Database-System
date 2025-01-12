@@ -1,56 +1,165 @@
 {% extends "temp_users/base.html" %}
-
-{% block title %}
-Edit Profile
-{% endblock %}
-
+{% block title %}Edit Profile{% endblock %}
 {% block content %}
-<div class="container">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <a href="{% url 'profile' %}" class="position-relative top-0 end-0 m-3 text-dark">
+        <div class="col-md-8 col-lg-6 position-relative">
+            <a href="{% url 'profile' %}" class="back-button">
                 <i class="bi bi-arrow-left-circle fs-1"></i>
             </a>
             <div class="card">
                 <div class="card-header text-center">
-                    <h3>Register</h3>
+                    <h3 class="mb-0">
+                        <i class="bi bi-pencil-square me-2"></i>Edit Profile
+                    </h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{% url 'edit-profile' %}" method="post">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            {{ form.first_name }}
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="first_name">
+                                        <i class="bi bi-person me-2"></i>First Name
+                                    </label>
+                                    {{ form.first_name }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="last_name">
+                                        <i class="bi bi-person me-2"></i>Last Name
+                                    </label>
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="username">
+                                        <i class="bi bi-person-badge me-2"></i>Username
+                                    </label>
+                                    {{ form.username }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone_number">
+                                        <i class="bi bi-phone me-2"></i>Phone Number
+                                    </label>
+                                    {{ form.phone_number }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">
+                                        <i class="bi bi-envelope me-2"></i>Email Address
+                                    </label>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="password">
+                                        <i class="bi bi-lock me-2"></i>Password
+                                    </label>
+                                    {{ form.password }}
+                                    <small class="text-muted d-block mt-1">
+                                        Leave blank to keep current password
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="location">
+                                        <i class="bi bi-geo-alt me-2"></i>Location
+                                    </label>
+                                    {{ form.location }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-check-circle me-2"></i>Save Changes
+                                </button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            {{ form.last_name }}
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            {{ form.username }}
-                        </div>
-                        <div class="form-group">
-                            <label for="phone_number">Phone Number</label>
-                            {{ form.phone_number }}
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            {{ form.email }}
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            {{ form.password }}
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Location</label>
-                            {{ form.location }}
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block w-100 mt-3">Update</button>
                     </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <small class="text-muted">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Your changes will be reflected immediately after saving
+                    </small>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    /* Additional styles for edit profile page */
+    .form-group {
+        margin-bottom: 0;
+    }
+    
+    .form-control {
+        border: 2px solid var(--cream-dark);
+        border-radius: 8px;
+        padding: 0.8rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: var(--coffee-medium);
+        box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+    }
+    
+    label {
+        color: var(--coffee-dark);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .card {
+        border: none;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    .card-header {
+        background: transparent;
+        border-bottom: 2px solid var(--cream-dark);
+        padding: 1.5rem;
+    }
+    
+    .card-header h3 {
+        font-family: 'Playfair Display', serif;
+        color: var(--coffee-dark);
+        margin: 0;
+    }
+    
+    .btn-primary {
+        background-color: var(--coffee-medium);
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--coffee-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 {% endblock %}
