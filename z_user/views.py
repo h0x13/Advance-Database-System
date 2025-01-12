@@ -79,6 +79,9 @@ def coffee(request, pk=None):
         COFFEE = get_object_or_404(Coffee, pk=pk)
         users_comment = Users_Feedback.objects.filter(coffee=COFFEE)
 
+    # Load all comments for reviews regardless of pk
+    all_comments = Users_Feedback.objects.all()
+
     if request.method == 'POST':
         form = Select_Quantity(request.POST, instance=user)
         comment_form = Comment_Form(request.POST)
@@ -113,7 +116,7 @@ def coffee(request, pk=None):
         'form': form,
         'coffees': coffees,
         'comments': comment_form,
-        'all_comments': users_comment if pk else None,
+        'all_comments': all_comments,  # Load all comments for reviews
         'selected_coffee': COFFEE,  # Pass the selected coffee for reference
     }
     return render(request, 'temp_users/coffee.html', context)

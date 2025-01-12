@@ -6,12 +6,12 @@ Bocx Coffee N' Co - Online Ordering
 {% block content %}
 <!-- Hero Section -->
 <div class="position-relative overflow-hidden">
-    <div class="container-fluid bg-dark text-white py-5" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/images/coffee-bg.jpg') center/cover;">
+    <div class="container-fluid py-5" style="background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.8)), url('/static/images/coffee-bg.jpg') center/cover;">
         <div class="container py-5">
             <div class="row min-vh-50 align-items-center">
                 <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="display-3 fw-bold mb-4">Welcome to Bocx Coffee N' Co</h1>
-                    <p class="lead mb-4">Experience hassle-free coffee ordering at Tanauan Plaza. Order your favorite brew with just a few clicks!</p>
+                    <h1 class="display-3 fw-bold mb-4 text-white" style="font-family: 'Playfair Display', serif;">Welcome to Bocx Coffee N' Co</h1>
+                    <p class="lead mb-4 text-light" style="font-family: 'Poppins', sans-serif;">Experience hassle-free coffee ordering at Tanauan Plaza. Order your favorite brew with just a few clicks!</p>
                 </div>
             </div>
         </div>
@@ -22,35 +22,35 @@ Bocx Coffee N' Co - Online Ordering
 <div class="container py-5">
     <div class="row g-4">
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center p-4">
-                    <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-block mb-3">
-                        <i class="bi bi-cup-hot fs-1 text-primary"></i>
+            <div class="content-wrapper h-100" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease;">
+                <div class="text-center">
+                    <div class="rounded-circle p-3 d-inline-block mb-3" style="background: rgba(139, 69, 19, 0.1);">
+                        <i class="bi bi-cup-hot fs-1" style="color: #8B4513;"></i>
                     </div>
-                    <h3 class="h4 mb-3">Easy Ordering</h3>
-                    <p class="text-muted mb-0">Browse our menu and place orders directly through a simple web interface.</p>
+                    <h3 class="h4 mb-3" style="color: #2C1810; font-family: 'Playfair Display', serif;">Easy Ordering</h3>
+                    <p class="mb-0" style="color: #8B4513;">Browse our menu and place orders directly through a simple web interface.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center p-4">
-                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
-                        <i class="bi bi-clock-history fs-1 text-success"></i>
+            <div class="content-wrapper h-100" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease;">
+                <div class="text-center">
+                    <div class="rounded-circle p-3 d-inline-block mb-3" style="background: rgba(139, 69, 19, 0.1);">
+                        <i class="bi bi-clock-history fs-1" style="color: #8B4513;"></i>
                     </div>
-                    <h3 class="h4 mb-3">Real-time Tracking</h3>
-                    <p class="text-muted mb-0">Track your order status from placement to completion in real-time.</p>
+                    <h3 class="h4 mb-3" style="color: #2C1810; font-family: 'Playfair Display', serif;">Real-time Tracking</h3>
+                    <p class="mb-0" style="color: #8B4513;">Track your order status from placement to completion in real-time.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center p-4">
-                    <div class="rounded-circle bg-warning bg-opacity-10 p-3 d-inline-block mb-3">
-                        <i class="bi bi-shield-check fs-1 text-warning"></i>
+            <div class="content-wrapper h-100" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease;">
+                <div class="text-center">
+                    <div class="rounded-circle p-3 d-inline-block mb-3" style="background: rgba(139, 69, 19, 0.1);">
+                        <i class="bi bi-shield-check fs-1" style="color: #8B4513;"></i>
                     </div>
-                    <h3 class="h4 mb-3">Secure System</h3>
-                    <p class="text-muted mb-0">Managed user access and secure ordering process for your peace of mind.</p>
+                    <h3 class="h4 mb-3" style="color: #2C1810; font-family: 'Playfair Display', serif;">Secure System</h3>
+                    <p class="mb-0" style="color: #8B4513;">Managed user access and secure ordering process for your peace of mind.</p>
                 </div>
             </div>
         </div>
@@ -58,76 +58,103 @@ Bocx Coffee N' Co - Online Ordering
 </div>
 
 <!-- How It Works Section -->
-<div class="container-fluid bg-light py-5">
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold">How It Works</h2>
-            <p class="lead text-muted">Order your favorite coffee in three simple steps</p>
+            <h2 class="display-5 fw-bold" style="color: #2C1810; font-family: 'Playfair Display', serif;">How It Works</h2>
+            <p class="lead" style="color: #8B4513;">Order your favorite coffee in three simple steps</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-dark text-white fs-3 p-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">1</div>
-                    <div>
-                        <h4>Create Account</h4>
-                        <p class="text-muted mb-0">Register or login to start ordering</p>
+                <div class="content-wrapper p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle fs-3 p-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: #2C1810; color: white;">1</div>
+                        <div>
+                            <h4 style="color: #2C1810; font-family: 'Playfair Display', serif;">Create Account</h4>
+                            <p class="mb-0" style="color: #8B4513;">Register or login to start ordering</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-dark text-white fs-3 p-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">2</div>
-                    <div>
-                        <h4>Place Order</h4>
-                        <p class="text-muted mb-0">Choose your items and checkout</p>
+                <div class="content-wrapper p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle fs-3 p-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: #2C1810; color: white;">2</div>
+                        <div>
+                            <h4 style="color: #2C1810; font-family: 'Playfair Display', serif;">Place Order</h4>
+                            <p class="mb-0" style="color: #8B4513;">Choose your items and checkout</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-dark text-white fs-3 p-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">3</div>
-                    <div>
-                        <h4>Track Status</h4>
-                        <p class="text-muted mb-0">Monitor your order in real-time</p>
+                <div class="content-wrapper p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle fs-3 p-3 me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: #2C1810; color: white;">3</div>
+                        <div>
+                            <h4 style="color: #2C1810; font-family: 'Playfair Display', serif;">Track Status</h4>
+                            <p class="mb-0" style="color: #8B4513;">Monitor your order in real-time</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Location -->
 <div class="container py-5">
     <div class="row align-items-center">
         <div class="col-lg-6 mb-4 mb-lg-0">
-            <h2 class="display-6 fw-bold mb-4">Visit Us in Tanauan, Leyte</h2>
-            <p class="lead mb-4">Experience the perfect blend of technology and tradition at our physical store.</p>
+            <h2 class="display-6 fw-bold mb-4" style="color: #2C1810; font-family: 'Playfair Display', serif;">Visit Us in Tanauan, Leyte</h2>
+            <p class="lead mb-4" style="color: #8B4513;">Experience the perfect blend of technology and tradition at our physical store.</p>
             <div class="d-flex align-items-center mb-3">
-                <i class="bi bi-geo-alt fs-4 text-primary me-3"></i>
-                <p class="mb-0">Located near Kuya Ben Lechon Manok, Town Center, Tanauan, Leyte</p>
+                <i class="bi bi-geo-alt fs-4 me-3" style="color: #8B4513;"></i>
+                <p class="mb-0" style="color: #2C1810;">Located near Kuya Ben Lechon Manok, Town Center, Tanauan, Leyte</p>
             </div>
             <div class="d-flex align-items-center mb-3">
-                <i class="bi bi-signpost-2 fs-4 text-primary me-3"></i>
-                <p class="mb-0">Landmark: Next to Kuya Ben Lechon Manok, near Municipal Hall</p>
+                <i class="bi bi-signpost-2 fs-4 me-3" style="color: #8B4513;"></i>
+                <p class="mb-0" style="color: #2C1810;">Landmark: Next to Kuya Ben Lechon Manok, near Municipal Hall</p>
             </div>
             <div class="d-flex align-items-center">
-                <i class="bi bi-clock fs-4 text-primary me-3"></i>
-                <p class="mb-0">Open Daily: 8:00 AM - 8:00 PM</p>
+                <i class="bi bi-clock fs-4 me-3" style="color: #8B4513;"></i>
+                <p class="mb-0" style="color: #2C1810;">Open Daily: 8:00 AM - 8:00 PM</p>
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="ratio ratio-16x9">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245!2d125.0166104896186!3d11.11057676104672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA2JzM4LjEiTiAxMjXCsDAwJzU5LjgiRQ!5e0!3m2!1sen!2sph!4v1705030001756!5m2!1sen!2sph"
-                    class="rounded shadow-sm"
-                    style="border:0;"
-                    allowfullscreen=""
-                    referrerpolicy="no-referrer-when-downgrade"
-                    loading="lazy">
-                </iframe>
+            <div class="content-wrapper">
+                <div class="ratio ratio-16x9">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245!2d125.0166104896186!3d11.11057676104672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x0%3A0x0!2zMTHCsDA2JzM4LjEiTiAxMjXCsDAwJzU5LjgiRQ!5e0!3m2!1sen!2sph!4v1705030001756!5m2!1sen!2sph"
+                        class="rounded"
+                        style="border:0;"
+                        allowfullscreen=""
+                        referrerpolicy="no-referrer-when-downgrade"
+                        loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .content-wrapper {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .content-wrapper:hover {
+        transform: translateY(-5px);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+    }
+</style>
 {% endblock %}

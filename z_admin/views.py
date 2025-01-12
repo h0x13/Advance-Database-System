@@ -15,7 +15,7 @@ from datetime import timedelta, datetime
 from .forms import Admin_Login, Add_Coffee, Edit_Coffee
 
 from .models import Admin_Account, Coffee, Order, AdminLogs
-from z_user.models import User_Account
+from z_user.models import User_Account, Users_Feedback
 
 
 
@@ -59,6 +59,7 @@ def admin_logout(request):
 def admin_dashboard(request):
     active_users = User_Account.objects.all()
     order_of_users = Order.objects.all()
+    user_comments = Users_Feedback.objects.all()
 
 
     today = timezone.now().date()
@@ -89,6 +90,9 @@ def admin_dashboard(request):
 
         "orders": order_of_users[:7], # Responsible for fetching in order table
         "total": total_price,
+
+        "num_comments": user_comments.count(),
+        "user_comments": user_comments[:3],
     }
     return render(request, 'temp_admin/admin-dashboard.html', context)
 
