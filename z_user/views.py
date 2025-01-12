@@ -91,14 +91,14 @@ def coffee(request, pk=None):
             quantity = form.cleaned_data.get('quantity')
             Order.objects.create(user=user, coffee=COFFEE, quantity=quantity)
             Purchase_Record.objects.create(user_account=user, order=COFFEE, quantity=quantity)
-            messages.success(request, 'Order placed successfully!')
+            # messages.success(request, 'Order placed successfully!')
             return redirect('coffee', pk=pk)
 
         # Process comment form
         if comment_form.is_valid() and COFFEE:
             comment = comment_form.cleaned_data.get('comment')
             Users_Feedback.objects.create(user=user, coffee=COFFEE, comment=comment)
-            messages.success(request, 'Comment submitted successfully!')
+            # messages.success(request, 'Comment submitted successfully!')
             return redirect('coffee', pk=pk)
 
         # Handle invalid forms
@@ -169,8 +169,8 @@ def edit_profile(request):
 
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('profile')
-        else:
-            messages.error(request, 'Please correct the error below.')
+        # else:
+        #     messages.error(request, 'Please correct the error below.')
     else:
         form = Edit_Form(instance=user_account)
     return render(request, 'temp_users/edit-profile.html', {'form': form})
