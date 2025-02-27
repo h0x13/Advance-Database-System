@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
     <script src="{% static 'bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'sweetalert.js' %}" defer></script>
 
-    <link rel="stylesheet" href="{% static 'static/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap-icons.min.css' %}">
     <title>{% block title %}{% endblock %} | Bocx Coffee N' Co.</title>
     <style>
@@ -123,6 +124,14 @@
             transition: all 0.3s ease;
         }
 
+        .btn-dark {
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
         .btn-primary:hover {
             background-color: var(--coffee-dark);
             transform: translateY(-2px);
@@ -195,7 +204,7 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}" href="{% url 'profile' %}">
                         <i class="bi bi-person me-1"></i> Profile
                     </a>
-                    <a class="nav-link {% if request.resolver_match.url_name == 'logout' %}active{% endif %}" href="{% url 'logout' %}">
+                    <a id="logoutBtn" class="nav-link {% if request.resolver_match.url_name == 'logout' %}active{% endif %}" href="{% url 'logout' %}">
                         <i class="bi bi-box-arrow-right me-1"></i> Logout
                     </a>
                     {% endif %}
@@ -205,5 +214,24 @@
     </nav>
 
     {% block content %}{% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', (e) => {
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', e => {
+                e.preventDefault();
+                Swal.fire({
+                    icon: "warning",
+                    title: "Are you sure you want to logout?",
+                    showDenyButton: true,
+                    confirmButtonText: "Yes",
+                    denyButtonText: "No",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = e.target.href;
+                    }
+                });
+            })
+        });
+    </script>
 </body>
 </html>

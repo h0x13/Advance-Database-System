@@ -11,9 +11,10 @@
     <!-- <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon"> -->
 
     <link href="{% static 'zbootstrap.min.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'static/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap-icons.min.css' %}">
     <script src="{% static 'bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'sweetalert.js' %}"></script>
 
 </head>
 
@@ -71,9 +72,9 @@
 
         <div class="mt-auto">
             <div class="list-group">
-                <a href="{% url 'admin-logout' %}" class="text-decoration-none">
+                <a href="{% url 'admin-logout' %}" class="text-decoration-none" id="logoutBtn">
                     <button type="submit" class="list-group-item list-group-item-action text-danger w-100 text-start">
-                        <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+                        <i class="bi bi-box-arrow-in-left me-2"></i>Logout
                     </button>
                 </a>
             </div>
@@ -83,6 +84,44 @@
     {% block content %}
     {% endblock %}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', (e) => {
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', e => {
+                e.preventDefault();
+                Swal.fire({
+                    icon: "warning",
+                    title: "Are you sure you want to logout?",
+                    showDenyButton: true,
+                    confirmButtonText: "Yes",
+                    denyButtonText: "No",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = e.target.href;
+                    }
+                });
+            });
+            const deleteCoffeeBtns = document.querySelectorAll('.delete-coffee-btn');
+            deleteCoffeeBtns.forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        showDenyButton: true,
+                        confirmButtonText: "Yes, delete it",
+                        denyButtonText: "No",
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = e.target.href;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
